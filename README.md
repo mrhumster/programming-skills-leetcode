@@ -22,3 +22,10 @@ Given two strings s and t, return true if t is an anagram of s, and false otherw
 ## 459. Repeated Substring Pattern
 Given a string s, check if it can be constructed by taking a substring of it and appending 
 multiple copies of the substring together
+
+## 66 Plus One
+You are given a large integer represented as an integer array digits, where each digits[i] 
+is the ith digit of the integer. The digits are ordered from most significant to least 
+significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
