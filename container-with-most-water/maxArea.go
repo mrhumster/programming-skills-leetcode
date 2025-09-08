@@ -27,27 +27,21 @@ func getVolume(a, b int, nums []int) int {
 }
 
 func maxArea(height []int) int {
-	left, right := 0, 1
+	left, right := 0, len(height)-1
 	maxV := 0
 	for left < right && right < len(height) {
 		currentV := getVolume(left, right, height)
 		if currentV > maxV {
 			maxV = currentV
 		}
-		if right < len(height)-1 && getVolume(left, right+1, height) > maxV {
-			right++
-		} else if right > left-1 && getVolume(left, right-1, height) > maxV {
+		// Внимание. Вот вся соль
+		// сканирование окошком, с самого большого
+		// окна и к центу по логике:
+		if height[left] < height[right] {
+			left++
+		} else if height[left] >= height[right] {
 			right--
-		} else if left > 0 && getVolume(left-1, right, height) > maxV {
-			left--
-		} else if left < right+1 && getVolume(left+1, right, height) > maxV {
-			left++
-		} else if right < len(height)-1 {
-			right++
-		} else {
-			left++
 		}
 	}
 	return maxV
 }
-
