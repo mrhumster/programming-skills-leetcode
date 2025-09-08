@@ -33,33 +33,31 @@ package t443
 import "strconv"
 
 func compress(chars []byte) int {
-	count := 1
-	ch := chars[0]
-	temp := []byte{}
-	for i, j := 0, 1; i < j && j < len(chars); j++ {
-		if chars[j] == ch {
+	n := len(chars)
+	write := 0
+	read := 0
+
+	for read < n {
+		ch := chars[read]
+		count := 0
+
+		for read < n && chars[read] == ch {
+			read++
 			count++
-			continue
-		} else {
-			temp = append(temp, byte(ch))
+		}
 
-			if count != 1 {
-				for _, i := range strconv.Itoa(count) {
-					temp = append(temp, byte(i))
-				}
+		chars[write] = ch
+		write++
+
+		if count > 1 {
+			numStr := strconv.Itoa(count)
+			for i := 0; i < len(numStr); i++ {
+				chars[write] = numStr[i]
+				write++
 			}
-			count = 1
-			ch = chars[j]
-		}
-	}
-	temp = append(temp, byte(ch))
-	if count != 1 {
-		for _, i := range strconv.Itoa(count) {
-			temp = append(temp, byte(i))
 		}
 	}
 
-	copy(chars[0:], temp)
-	return len(chars[0:len(temp)])
+	return write
 }
 
