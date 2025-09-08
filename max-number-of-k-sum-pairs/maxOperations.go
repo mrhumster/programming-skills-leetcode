@@ -16,7 +16,6 @@ func maxOperations(nums []int, k int) int {
 	for i := 0; i < len(nums); i++ {
 		j := slices.Index(nums, k-nums[i])
 		if j == -1 {
-			nums = slices.Delete(nums, i, i+1)
 			continue
 		}
 		nums = slices.Delete(nums, j, j+1)
