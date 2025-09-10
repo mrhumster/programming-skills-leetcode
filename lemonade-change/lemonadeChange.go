@@ -23,13 +23,6 @@ func needMoneyBack(v int) int {
 	return v - 5
 }
 
-func isThereAnyAtTheTill(v int, till map[int]int) bool {
-	sum := 0
-	for i, v := range till {
-		sum += i * v
-	}
-	return sum >= v
-}
 
 func takeMoneyFromTheTill(till *map[int]int, v int) error {
 	if v == 15 && (*till)[10] >= 1 && (*till)[5] >= 1 {

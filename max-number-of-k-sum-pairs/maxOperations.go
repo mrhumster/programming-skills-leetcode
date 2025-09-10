@@ -13,15 +13,19 @@ import "slices"
 
 func maxOperations(nums []int, k int) int {
 	count := 0
-	for i := 0; i < len(nums); i++ {
-		j := slices.Index(nums, k-nums[i])
-		if j == -1 {
-			continue
+	slices.Sort(nums)
+	for start, end := 0, len(nums)-1; start<end; {
+		a := nums[start]
+		b := nums[end]
+		if a + b == k {
+			start++
+			end--
+			count++
+		} else if a + b < k {
+			start++
+		} else {
+			end--
 		}
-		nums = slices.Delete(nums, j, j+1)
-		nums = slices.Delete(nums, i-1, i)
-		count++
-		i = 0
 	}
 	return count
 }
