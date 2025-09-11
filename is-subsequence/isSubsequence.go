@@ -21,7 +21,7 @@ func isSubsequence(s string, t string) bool {
 		if s[is] == t[it] {
 			is++
 		}
+
 	}
 	return is == len(s)
 }
-
